@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://klnodlwds4xm"]
+
+[ext_resource type="PackedScene" uid="uid://cx456py6spkl6" path="res://sphere_1.tscn" id="1_j54wm"]
+[ext_resource type="PackedScene" uid="uid://jiktajt8ha1u" path="res://sphere_2.tscn" id="2_8slta"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5spg5"]
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Node3D2" type="Node3D"]
+
+[node name="Main" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="MainSubViewport" type="SubViewport" parent="Main"]
+transparent_bg = true
+handle_input_locally = false
+physics_object_picking = true
+canvas_cull_mask = 4293918721
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Sphere1" parent="Main/MainSubViewport" instance=ExtResource("1_j54wm")]
+
+[node name="SecondarySubViewport" type="SubViewport" parent="Main"]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+physics_object_picking = true
+canvas_cull_mask = 4294443008
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Sphere2" parent="Main/SecondarySubViewport" instance=ExtResource("2_8slta")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57955, 0)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -316.0
+offset_top = 237.0
+offset_right = -48.0
+offset_bottom = -266.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "If you click on each sphere, the input event gets triggered. But if you click on the intersection, both get triggered."
+label_settings = SubResource("LabelSettings_5spg5")
+autowrap_mode = 2
